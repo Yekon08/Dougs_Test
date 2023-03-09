@@ -3,6 +3,8 @@ import type { HeadFC } from "gatsby";
 import "../styles/global.scss";
 import { Category } from "../interfaces/categories";
 import Header from "../Components/Header";
+import CategoriesList from "../Components/CategoriesList";
+import Footer from "../Components/Footer";
 
 const IndexPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,11 +33,17 @@ const IndexPage = () => {
   }, []);
 
   return (
-    <>
+    <div className="container">
       <Header activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
-      {isLoading && <p>Loading...</p>}
-      <p>not loading</p>
-    </>
+      <main className="maxWidth">
+        <CategoriesList
+          data={data}
+          isLoading={isLoading}
+          activeFilter={activeFilter}
+        />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

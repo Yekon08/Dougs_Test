@@ -26,7 +26,25 @@ const IndexPage = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log("filtered data: ", data);
+  const sortByTitle = data.sort((a, b) => {
+    if (a.wording < b.wording) {
+      return -1;
+    }
+    if (a.wording > b.wording) {
+      return 1;
+    }
+    return 0;
+  });
+
+  const sortByGroup = data.reduce(
+    (result: { [key: number]: Category[] }, currentValue: Category) => {
+      currentValue.group &&
+        (result[currentValue.group.id] =
+          result[currentValue.group.id] || []).push(currentValue);
+      return result;
+    },
+    {}
+  );
 
   return (
     <main className="test">

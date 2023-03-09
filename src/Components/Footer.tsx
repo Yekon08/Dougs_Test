@@ -3,7 +3,9 @@ import React from "react";
 const Footer = () => {
   return (
     <footer>
-      <div className="maxWidth">Footer</div>
+      <div className="maxWidth">
+        <button>Sélectionner la catégorie</button>
+      </div>
     </footer>
   );
 };

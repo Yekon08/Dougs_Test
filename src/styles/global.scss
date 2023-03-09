@@ -82,6 +82,24 @@ footer {
   padding: 12px 10%;
   position: sticky;
   bottom: 0;
+
+  & .maxWidth {
+    justify-content: flex-end;
+  }
+
+  & button {
+    width: auto;
+    height: 35px;
+    color: #fff;
+    background: #{$lightBlue};
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
 }
 
 .btn {

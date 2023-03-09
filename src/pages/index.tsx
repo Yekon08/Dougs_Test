@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import type { HeadFC } from "gatsby";
-import "../global.scss";
+import "../styles/global.scss";
 import { Category } from "../interfaces/categories";
+import Header from "../Components/Header";
 
 const IndexPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<Category[]>([]);
+  const [activeFilter, setActiveFilter] = useState<"group" | "alphabetic">(
+    "group"
+  );
 
   useEffect(() => {
     const urls = [
@@ -13,7 +17,7 @@ const IndexPage = () => {
       "http://localhost:3000/visible-categories",
     ];
     Promise.all(urls.map((url) => fetch(url).then((res) => res.json())))
-      .then(([allCategories, visibleCategories]: any) => {
+      .then(([allCategories, visibleCategories]: Category[][]) => {
         const visibleCategoriesId = visibleCategories.map(
           (categoryId: { id: number }) => categoryId.id
         );
@@ -26,31 +30,12 @@ const IndexPage = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const sortByTitle = data.sort((a, b) => {
-    if (a.wording < b.wording) {
-      return -1;
-    }
-    if (a.wording > b.wording) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const sortByGroup = data.reduce(
-    (result: { [key: number]: Category[] }, currentValue: Category) => {
-      currentValue.group &&
-        (result[currentValue.group.id] =
-          result[currentValue.group.id] || []).push(currentValue);
-      return result;
-    },
-    {}
-  );
-
   return (
-    <main className="test">
+    <>
+      <Header activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
       {isLoading && <p>Loading...</p>}
       <p>not loading</p>
-    </main>
+    </>
   );
 };
 

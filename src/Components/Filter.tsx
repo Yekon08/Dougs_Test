@@ -1,11 +1,26 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { Category } from "../interfaces/categories";
+import { sortByGroup } from "../utils";
 
 interface Props {
   query: string;
   setQuery: Dispatch<SetStateAction<string>>;
+  data: Category[];
 }
 
-const Filter = ({ query, setQuery }: Props) => {
+const Filter = ({ query, setQuery, data }: Props) => {
+  const selectOptions = () => {
+    return Object.entries(sortByGroup(data)).map(([id, categories]) => {
+      if (categories.length > 0 && categories[0].group) {
+        return (
+          <option value={categories[0].group.name}>
+            {categories[0].group.name}
+          </option>
+        );
+      }
+    });
+  };
+
   return (
     <div className="filterContainer">
       <div className="searchContainer">
@@ -35,6 +50,11 @@ const Filter = ({ query, setQuery }: Props) => {
           id="search"
         />
       </div>
+
+      <select value={query} onChange={(e) => setQuery(e.target.value)}>
+        <option value="">Tous les groupes de catégories</option>
+        {selectOptions()}
+      </select>
     </div>
   );
 };

@@ -43,7 +43,7 @@ const IndexPage = () => {
     <div className="container">
       <Header activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
       <main className="maxWidth">
-        <Filter query={query} setQuery={setQuery} />
+        <Filter query={query} setQuery={setQuery} data={data} />
         <CategoriesList
           data={filteredData}
           isLoading={isLoading}

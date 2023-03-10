@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import type { HeadFC } from "gatsby";
 import "../styles/styles.scss";
 import { Category } from "../interfaces/categories";
@@ -12,6 +12,7 @@ const IndexPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<Category[]>([]);
   const [activeFilter, setActiveFilter] = useState<FilterView>("group");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const urls = [
@@ -32,13 +33,19 @@ const IndexPage = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const filteredData = useMemo(() => {
+    return data.filter((cat) => {
+      return cat.group?.name.toLowerCase().includes(query.toLowerCase());
+    });
+  }, [data, query]);
+
   return (
     <div className="container">
       <Header activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
       <main className="maxWidth">
-        <Filter />
+        <Filter query={query} setQuery={setQuery} />
         <CategoriesList
-          data={data}
+          data={filteredData}
           isLoading={isLoading}
           activeFilter={activeFilter}
         />

@@ -40,7 +40,7 @@ const Header = ({ activeFilter, setActiveFilter }: Props) => {
                 }`}
               />
             </svg>
-            Groupe de catégorie
+            Ordre alphabétique
           </button>
         </div>
       </div>

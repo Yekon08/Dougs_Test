@@ -13,13 +13,18 @@ export const sortByTitle = (data: Category[]) =>
 
 export const sortByGroup = (data: Category[]) =>
   data.reduce(
-    (result: { [key: number]: Category[] }, currentValue: Category) => {
-      currentValue.group &&
-        (result[currentValue.group.id] =
-          result[currentValue.group.id] || []).push(currentValue);
+    (
+      result: { [key: number | string]: Category[] },
+      currentValue: Category
+    ) => {
+      currentValue.group
+        ? (result[currentValue.group.id] =
+            result[currentValue.group.id] || []).push(currentValue)
+        : result.other.push(currentValue);
+
       return result;
     },
-    {}
+    { other: [] }
   );
 
 export const handleBgColors = (value: string) => {

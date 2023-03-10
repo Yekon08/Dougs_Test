@@ -9,7 +9,9 @@ interface Props {
 
 const CategoryCards = ({ data, alphabetic }: Props) => {
   return (
-    <div className="categoryCard">
+    <div
+      className={`categoryCard ${alphabetic ? "alphabeticCard" : "groupCard"}`}
+    >
       {alphabetic && data.group && (
         <div className="tag">
           <span

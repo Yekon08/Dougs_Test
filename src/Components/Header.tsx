@@ -1,8 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { FilterView } from "../interfaces/global";
 
 interface Props {
-  activeFilter: "group" | "alphabetic";
-  setActiveFilter: Dispatch<SetStateAction<"group" | "alphabetic">>;
+  activeFilter: FilterView;
+  setActiveFilter: Dispatch<SetStateAction<FilterView>>;
 }
 
 const Header = ({ activeFilter, setActiveFilter }: Props) => {

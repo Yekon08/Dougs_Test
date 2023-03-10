@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import type { HeadFC } from "gatsby";
-import "../styles/global.scss";
+import "../styles/styles.scss";
 import { Category } from "../interfaces/categories";
 import Header from "../Components/Header";
 import CategoriesList from "../Components/CategoriesList";
 import Footer from "../Components/Footer";
+import { FilterView } from "../interfaces/global";
+import Filter from "../Components/Filter";
 
 const IndexPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<Category[]>([]);
-  const [activeFilter, setActiveFilter] = useState<"group" | "alphabetic">(
-    "group"
-  );
+  const [activeFilter, setActiveFilter] = useState<FilterView>("group");
 
   useEffect(() => {
     const urls = [
@@ -36,6 +36,7 @@ const IndexPage = () => {
     <div className="container">
       <Header activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
       <main className="maxWidth">
+        <Filter />
         <CategoriesList
           data={data}
           isLoading={isLoading}

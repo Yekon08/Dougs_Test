@@ -1,16 +1,21 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Category } from "../interfaces/categories";
 import { handleBgColors } from "../utils";
 
 interface Props {
   data: Category;
   alphabetic?: boolean;
+  setSelected: Dispatch<SetStateAction<{}>>;
+  selected: Category | {};
 }
 
-const CategoryCards = ({ data, alphabetic }: Props) => {
+const CategoryCards = ({ data, alphabetic, setSelected, selected }: Props) => {
   return (
     <div
-      className={`categoryCard ${alphabetic ? "alphabeticCard" : "groupCard"}`}
+      onClick={() => (selected === data ? setSelected({}) : setSelected(data))}
+      className={`categoryCard ${alphabetic ? "alphabeticCard" : "groupCard"} ${
+        selected === data && "activeCard"
+      }`}
     >
       {alphabetic && data.group && (
         <div className="tag">

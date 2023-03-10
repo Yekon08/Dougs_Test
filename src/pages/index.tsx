@@ -13,6 +13,7 @@ const IndexPage = () => {
   const [data, setData] = useState<Category[]>([]);
   const [activeFilter, setActiveFilter] = useState<FilterView>("group");
   const [query, setQuery] = useState("");
+  const [selected, setSelected] = useState<Category | {}>({});
 
   useEffect(() => {
     const urls = [
@@ -48,9 +49,11 @@ const IndexPage = () => {
           data={filteredData}
           isLoading={isLoading}
           activeFilter={activeFilter}
+          selected={selected}
+          setSelected={setSelected}
         />
       </main>
-      <Footer />
+      <Footer selected={selected as Category} />
     </div>
   );
 };

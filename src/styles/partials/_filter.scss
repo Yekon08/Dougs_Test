@@ -7,7 +7,8 @@
   justify-content: space-between;
   align-items: center;
   border: 1px solid #{$borderGray};
-  border-bottom: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 
   & select {
     width: 270px;

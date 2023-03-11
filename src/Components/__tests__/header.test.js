@@ -9,9 +9,9 @@ import { render, screen } from "@testing-library/react";
 
 import Header from "../Header";
 
-render(<Header activeFilter="group" />);
-
 describe("Header", () => {
+  render(<Header activeFilter="group" />);
+
   test("Title should be Catégories", () => {
     expect(screen.getByRole("heading")).toHaveTextContent("Catégories");
   });

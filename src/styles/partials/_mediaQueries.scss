@@ -1,0 +1,56 @@
+@media screen and (max-width: 1400px) {
+  .maxWidth {
+    max-width: none;
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .maxWidth {
+    max-width: none;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .categoriesContainer .groupContainer .cardsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categoryCard {
+    border-right: none;
+  }
+
+  .categoriesContainer.alphabetic {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .searchContainer {
+    width: 100%;
+
+    & input {
+      height: 35px;
+    }
+  }
+
+  .filterContainer {
+    display: flex;
+    flex-direction: column;
+
+    & select {
+      width: 100%;
+      margin-top: 8px;
+      margin-left: 0;
+    }
+  }
+
+  header h4 {
+    display: none;
+  }
+
+  header .btnContainer {
+    margin-left: 0;
+  }
+}
